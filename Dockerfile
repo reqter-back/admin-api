@@ -1,4 +1,4 @@
-FROM node:alpine AS mivapp
+FROM node:alpine AS adminpanel
 
 WORKDIR /app
 COPY . /app 
