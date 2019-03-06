@@ -1,0 +1,19 @@
+{
+  "name": "adminpanel",
+  "version": "1.0.0",
+  "description": "RFQ admin panel gateway",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fakhrad/adminpanel.git"
+  },
+  "author": "Fakhreddin Rezaei",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fakhrad/adminpanel/issues"
+  },
+  "homepage": "https://github.com/fakhrad/adminpanel#readme"
+}
