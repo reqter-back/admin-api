@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var helmet = require('helmet');
 var compression = require('compression');
+var router = express.Router()
+
 
 var app = express();
 
@@ -14,10 +16,14 @@ app.use(cors());
 
 var oauth = require('./routes/oauth');
 var apps = require('./routes/apps');
+var ctypes = require('./routes/contentTypes');
 
+// a middleware function with no mount path. This code is executed for every request to the router
+router.use("/auth", oauth);
+router.use("/apps", apps);
+router.use("/ctypes", ctypes);
 app.use(logger('dev'));
-app.use('/auth', oauth);
-app.use('/apps', apps);
+app.use('/admin', router);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());

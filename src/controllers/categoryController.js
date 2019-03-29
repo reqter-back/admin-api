@@ -4,9 +4,9 @@ const { body, validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 const broker = require('./serviceBroker');
 
-exports.getclients = function(req, res, next) {
-    console.log(req.userId)
-    broker.sendRPCMessage({userId : req.userId}, 'getuserapps').then((result)=>{
+
+exports.getAll = function(req, res, next) {
+    broker.sendRPCMessage({clientId : req.body.clientId, userId : req.userId}, 'getcategories').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
@@ -23,48 +23,8 @@ exports.getclients = function(req, res, next) {
         }
     });
   }
-
-  exports.getbyid = function(req, res, next) {
-    console.log(req.userId)
-    broker.sendRPCMessage({appid : req.query.id}, 'getuserappbyid').then((result)=>{
-        var obj = JSON.parse(result.toString('utf8'));
-        if (!obj.success)
-        {
-            if (obj.error)
-                return res.status(500).json(obj);
-            else
-            {
-                res.status(404).json(obj);
-            }
-        }
-        else
-        {
-            res.status(200).json(obj.data);
-        }
-    });
-  }
-exports.registerclient = function(req, res, next) {
-    console.log(req.body);
-    broker.sendRPCMessage(req.body, 'registerapp').then((result)=>{
-    var obj = JSON.parse(result.toString('utf8'));
-    if (!obj.success)
-    {
-        if (obj.error)
-            return res.status(500).json(obj);
-        else
-        {
-            res.status(404).json(obj);
-        }
-    }
-    else
-    {
-        res.status(200).json(obj.data);
-    }
-});
-}
-
-exports.removeclient = function(req, res, next) {
-    broker.sendRPCMessage(req.body, 'removeapp').then((result)=>{
+  exports.add = function(req, res, next) {
+    broker.sendRPCMessage({clientId : req.body.clientId, userId : req.userId, id : req.body.id}, 'addcategory').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
@@ -82,8 +42,27 @@ exports.removeclient = function(req, res, next) {
     });
 }
 
-exports.updateclient = function(req, res, next) {
-    broker.sendRPCMessage(req.body, 'updateapp').then((result)=>{
+exports.update = function(req, res, next) {
+    broker.sendRPCMessage({clientId : req.body.clientId, userId : req.userId, id : req.body.id}, 'removecategory').then((result)=>{
+        var obj = JSON.parse(result.toString('utf8'));
+        if (!obj.success)
+        {
+            if (obj.error)
+                return res.status(500).json(obj);
+            else
+            {
+                res.status(404).json(obj);
+            }
+        }
+        else
+        {
+            res.status(200).json(obj.data);
+        }
+    });
+}
+
+exports.remove = function(req, res, next) {
+    broker.sendRPCMessage({clientId : req.body.clientId, userId : req.userId, id : req.body.id}, 'removecategory').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {

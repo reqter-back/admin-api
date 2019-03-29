@@ -41,12 +41,12 @@ HTTP/1.1 500 Internal server error
  }
 
  */
-router.get("/api/v1/getall", auth.verifyToken, clientController.getclients);
+router.get("/getall", auth.verifyToken, clientController.getclients);
 
-router.post("/api/v1/register", clientController.registerclient);
+router.post("/register", clientController.registerclient);
 
-router.delete("/api/v1/remove", clientController.removeclient);
+router.delete("/remove", auth.verifyToken, clientController.removeclient);
 
-router.put("/api/v1/update", clientController.updateclient);
-router.get("/api/v1/info", clientController.getbyid);
+router.put("/update", auth.verifyToken, clientController.updateclient);
+router.get("/info", clientController.getbyid);
 module.exports = router;
