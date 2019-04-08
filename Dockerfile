@@ -1,4 +1,4 @@
-FROM node:alpine AS adminpanel
+FROM node:alpine AS admin-api
 
 WORKDIR /app
 COPY . /app 
