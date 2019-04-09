@@ -11,7 +11,7 @@ var broker = require('../controllers/serviceBroker')
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '8010');
+var port = normalizePort(process.env.PORT || '80');
 app.set('port', port);
 broker.start();
 /**
