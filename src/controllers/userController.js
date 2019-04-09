@@ -49,11 +49,11 @@ exports.login = [
 ];
 
 exports.register = [
-    body('username', "Username must not be empty").isEmail().withMessage('Invalid email address.'),
-    body('password', "Password must not be empty").isLength({min : 8}).withMessage('Password length must be at least 8 charachters').isAlphanumeric().withMessage('Password must contain charachters and numbers'),
-    //Sanitize fields
-    sanitizeBody('email').trim().escape(),
-    sanitizeBody('password').trim().escape(),
+    // body('username', "Username must not be empty").isEmail().withMessage('Invalid email address.'),
+    // body('password', "Password must not be empty").isLength({min : 8}).withMessage('Password length must be at least 8 charachters').isAlphanumeric().withMessage('Password must contain charachters and numbers'),
+    // //Sanitize fields
+    // sanitizeBody('email').trim().escape(),
+    // sanitizeBody('password').trim().escape(),
     (req, res, next) =>{
         var errors = validationResult(req);
         if (!errors.isEmpty())
