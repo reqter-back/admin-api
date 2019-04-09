@@ -12,8 +12,8 @@ function verifyToken(req, res, next) {
       return res.status(403).send({ auth: false, message: 'No token provided.' });
     jwt.verify(token, config.secret, function(err, decoded) {
       if (err)
-      return res.status(401).send({ auth: false, message: 'Failed to authenticate token.' });
-      // if everything good, save to request for use in other routes
+      return res.status(401).send({ auth: false, message: 'Failed to authenticate token. ' });
+      // if everything good, save to request for use in other routes 
       if (!decoded.authenticated)
         return res.status(401).send({ auth: false, message: 'Authenticatd not completed. Two factor authentication must validated before using.' });
       req.userId = decoded.id;

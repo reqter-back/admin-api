@@ -1,5 +1,5 @@
 {
-  "name": "adminpanel",
+  "name": "admin-api",
   "version": "1.0.0",
   "description": "RFQ admin panel gateway",
   "main": "index.js",
