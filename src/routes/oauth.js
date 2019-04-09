@@ -1,6 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var ctrl = require('../controllers/userController');
+var auth = require('../controllers/auth');
 router.post("/token", ctrl.login);
-router.post("/register", ctrl.register);
+router.post("/register", ctrl.registeruser);
+router.out("/changeavatar", auth.verifyToken, ctrl.changeavatar);
+router.out("/updateprofile", auth.verifyToken, ctrl.updateprofile);
+router.delete("/delete", auth.verifyToken, ctrl.deleteaccount);
+router.get("/findbyemail", auth.verifyToken, ctrl.findbyemail);
 module.exports = router;
