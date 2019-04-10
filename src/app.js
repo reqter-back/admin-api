@@ -22,16 +22,16 @@ var contents = require('./routes/contents');
 var categories = require('./routes/categories');
 
 // a middleware function with no mount path. This code is executed for every request to the router
-router.use("/auth", oauth);
-router.use("/apps", apps);
-router.use("/ctypes", ctypes);
-router.use("/assets", assets);
-router.use("/contents", contents);
-router.use("/categories", categories);
+
 app.use(logger('dev'));
-app.use('/admin', router);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use("/auth", oauth);
+app.use("/apps", apps);
+app.use("/ctypes", ctypes);
+app.use("/assets", assets);
+app.use("/contents", contents);
+app.use("/categories", categories);
 module.exports = app;
