@@ -61,5 +61,5 @@ exports.sendRPCMessage = (message, rpcQueue) => new Promise((resolve) => {
   const correlationId = uuidv4();
   // listen for the content emitted on the correlationId event
   channel.responseEmitter.once(correlationId, resolve);
-  channel.sendToQueue(rpcQueue, new Buffer.from(JSON.stringify(message)), { correlationId, replyTo: REPLY_QUEUE })
+  channel.sendToQueue(rpcQueue, Buffer.from(JSON.stringify(message)), { correlationId, replyTo: REPLY_QUEUE })
 });
