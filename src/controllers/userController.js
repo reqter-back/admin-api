@@ -65,8 +65,10 @@ exports.register = [
         else
         {
             console.log('add system user started.')
+            console.log(req.body);
             broker.sendRPCMessage(req.body, 'adminregister').then((result)=>{
                 var obj = JSON.parse(result.toString('utf8'));
+                console.log(obj);
                 if (!obj.success)
                 {
                     if (obj.error)
