@@ -36,7 +36,7 @@ exports.login = [
              {
                  if (obj.data)
                  {
-                    res.status(200).json({access_token : obj.data.access_token, authenticated : true, token_type : obj.data.token_type, refresh_token : obj.data.refresh_token});
+                    res.status(200).json({access_token : obj.data.access_token});
                  }
                  else
                  {
@@ -76,7 +76,7 @@ exports.register = [
                 }
                 else
                 {
-                    res.status(201).json(wrapUser(obj.data));
+                    res.status(201).json(obj.data);
                 }
             });
         };
