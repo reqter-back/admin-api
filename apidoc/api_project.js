@@ -1,0 +1,1 @@
+define({  "name": "Mivapp Api",  "version": "0.0.0",  "description": "Mivapp backend api",  "apidoc": "0.3.0",  "sampleUrl": false,  "defaultVersion": "0.0.0",  "generator": {    "name": "apidoc",    "time": "2019-04-10T11:53:44.750Z",    "url": "http://apidocjs.com",    "version": "0.17.7"  }});

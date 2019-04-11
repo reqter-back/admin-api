@@ -5,12 +5,12 @@ const { sanitizeBody } = require('express-validator/filter');
 const broker = require('./serviceBroker');
 
 exports.login = [
-//     //Validate fields
-//  body('username', "UserName must not be empty").isEmail().withMessage('Invalid email'),
-//  body('password', "Password must not be empty").isLength({min : 8}).withMessage('Password length must be at least 8 charachters').isAlphanumeric().withMessage('Password must contain charachters and numbers'),
-//  //Sanitize fields
-//  sanitizeBody('username').trim().escape(),
-//  sanitizeBody('password').trim().escape(),
+    //Validate fields
+ body('username', "UserName must not be empty").isEmail().withMessage('Invalid email'),
+ body('password', "Password must not be empty").isLength({min : 8}).withMessage('Password length must be at least 8 charachters').isAlphanumeric().withMessage('Password must contain charachters and numbers'),
+ //Sanitize fields
+ sanitizeBody('username').trim().escape(),
+ sanitizeBody('password').trim().escape(),
  (req, res, next) =>{
  console.log(req.body);
  var errors = validationResult(req);
@@ -49,32 +49,51 @@ exports.login = [
 }
 ];
 
-exports.register = (req, res, next)=>
-{
-    console.log('add system user started.')
+exports.register = [
+    //Validate fields
+ body('username', "UserName must not be empty").isEmail().withMessage('Invalid email'),
+ body('password', "Password must not be empty").isLength({min : 8}).withMessage('Password length must be at least 8 charachters').isAlphanumeric().withMessage('Password must contain charachters and numbers'),
+ //Sanitize fields
+ sanitizeBody('username').trim().escape(),
+ sanitizeBody('password').trim().escape(),
+ (req, res, next) =>{
     console.log(req.body);
-    broker.sendRPCMessage(req.body, 'adminregister').then((result)=>{
-        var obj = JSON.parse(result.toString('utf8'));
-        console.log(obj);
-        if (!obj.success)
-        {
-            if (obj.error)
-            {
-                if (obj.error.code == 11000)
-                {
-                    obj.error = "User : " + req.body.username + " already exists";
-                }
-                
-                return res.status(500).json(obj);
-            }
+    var errors = validationResult(req);
+        if (!errors.isEmpty())
+        {  
+            //There are errors. send error result
+            res.status(400).json({"success" : false, "error" : errors.message});
+            return;
         }
         else
         {
-            res.status(201).json(obj.data);
-        }
-    });
-}
+            //#region Rabbit Implementation
 
+        console.log('add system user started.')
+        console.log(req.body);
+        broker.sendRPCMessage(req.body, 'adminregister').then((result)=>{
+            var obj = JSON.parse(result.toString('utf8'));
+            console.log(obj);
+            if (!obj.success)
+            {
+                if (obj.error)
+                {
+                    if (obj.error.code == 11000)
+                    {
+                        obj.error = "User : " + req.body.username + " already exists";
+                    }
+                    
+                    return res.status(500).json(obj);
+                }
+            }
+            else
+            {
+                res.status(201).json(obj.data);
+            }
+        });
+    }
+ }
+]
 
 exports.changeavatar = [
     (req, res, next) =>{
