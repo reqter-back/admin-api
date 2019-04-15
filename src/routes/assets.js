@@ -5,7 +5,7 @@ var controller = require('../controllers/assetController');
 
 router.get("/getall", auth.verifyToken, controller.getAll);
 
-router.post("/add", controller.add);
+router.post("/add", auth.verifyToken, controller.add);
 
 router.delete("/remove", auth.verifyToken, controller.remove);
 

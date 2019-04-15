@@ -6,7 +6,7 @@ var controller = require('../controllers/contentController');
 router.get("/getall", auth.verifyToken, controller.getAll);
 router.get("/getbyid", auth.verifyToken, controller.getById);
 
-router.post("/add", controller.add);
+router.post("/add", auth.verifyToken, controller.add);
 
 router.delete("/remove", auth.verifyToken, controller.remove);
 

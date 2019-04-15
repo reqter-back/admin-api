@@ -43,7 +43,7 @@ exports.getAll = function(req, res, next) {
 }
 
 exports.update = function(req, res, next) {
-    broker.sendRPCMessage({clientId : req.body.clientId, userId : req.userId, id : req.body.id}, 'removecontenttype').then((result)=>{
+    broker.sendRPCMessage({clientId : req.body.clientId, userId : req.userId, id : req.body.id}, 'updatecontenttype').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
