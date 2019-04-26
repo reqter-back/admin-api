@@ -23,7 +23,7 @@ exports.login = [
      else
      {
          //#region Rabbit Implementation
-         broker.sendRPCMessage(req.body, 'adminlogin').then((result)=>{
+         broker.sendRPCMessage({body : req.body}, 'adminlogin').then((result)=>{
              var obj = JSON.parse(result.toString('utf8'));
              console.log(obj);
              if (!obj.success)
@@ -37,7 +37,7 @@ exports.login = [
              {
                  if (obj.data)
                  {
-                    res.status(200).json({success : true, access_token : obj.data.access_token});
+                    res.status(200).json({success : true, access_token : obj.data.access_token, account_type : obj.data.account_type});
                  }
                  else
                  {
@@ -71,7 +71,7 @@ exports.register = [
 
         console.log('add system user started.')
         console.log(req.body);
-        broker.sendRPCMessage(req.body, 'adminregister').then((result)=>{
+        broker.sendRPCMessage({body : req.body}, 'adminregister').then((result)=>{
             var obj = JSON.parse(result.toString('utf8'));
             console.log(obj);
             if (!obj.success)
@@ -107,7 +107,7 @@ exports.changeavatar = [
         else
         {
             console.log('add system user started.')
-            broker.sendRPCMessage(req.body, 'adminchangeavatar').then((result)=>{
+            broker.sendRPCMessage({body : req.body}, 'adminchangeavatar').then((result)=>{
                 var obj = JSON.parse(result.toString('utf8'));
                 if (!obj.success)
                 {
@@ -138,7 +138,7 @@ exports.updateprofile = [
         else
         {
             console.log('add system user started.')
-            broker.sendRPCMessage(req.body, 'adminupdateprofile').then((result)=>{
+            broker.sendRPCMessage({body : req.body}, 'adminupdateprofile').then((result)=>{
                 var obj = JSON.parse(result.toString('utf8'));
                 if (!obj.success)
                 {
@@ -169,7 +169,7 @@ exports.deleteAccount = [
         else
         {
             console.log('add system user started.')
-            broker.sendRPCMessage(req.body, 'admindeleteaccount').then((result)=>{
+            broker.sendRPCMessage({body : req.body}, 'admindeleteaccount').then((result)=>{
                 var obj = JSON.parse(result.toString('utf8'));
                 if (!obj.success)
                 {
@@ -205,7 +205,7 @@ exports.findbyemail = [
         else
         {
             console.log('add system user started.')
-            broker.sendRPCMessage(req.body, 'adminfindbyemail').then((result)=>{
+            broker.sendRPCMessage({body : req.body}, 'adminfindbyemail').then((result)=>{
                 var obj = JSON.parse(result.toString('utf8'));
                 if (!obj.success)
                 {
