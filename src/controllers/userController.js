@@ -6,11 +6,11 @@ const broker = require('./serviceBroker');
 
 exports.login = [
     //Validate fields
-//  body('username', "UserName must not be empty").isEmail().withMessage('Invalid email'),
-//  body('password', "Password must not be empty").isLength({min : 8}).withMessage('Password length must be at least 8 charachters').isAlphanumeric().withMessage('Password must contain charachters and numbers'),
-//  //Sanitize fields
-//  sanitizeBody('username').trim().escape(),
-//  sanitizeBody('password').trim().escape(),
+ body('username', "UserName must not be empty").isEmail().withMessage('Invalid email'),
+ body('password', "Password must not be empty").isLength({min : 8}).withMessage('Password length must be at least 8 charachters'),
+ //Sanitize fields
+ sanitizeBody('username').trim().escape(),
+ sanitizeBody('password').trim().escape(),
  (req, res, next) =>{
  console.log(req.body);
  var errors = validationResult(req);
@@ -51,11 +51,11 @@ exports.login = [
 
 exports.register = [
     //Validate fields
-//  body('username', "UserName must not be empty").isEmail().withMessage('Invalid email'),
-//  body('password', "Password must not be empty").isLength({min : 8}).withMessage('Password length must be at least 8 charachters').isAlphanumeric().withMessage('Password must contain charachters and numbers'),
-//  //Sanitize fields
-//  sanitizeBody('username').trim().escape(),
-//  sanitizeBody('password').trim().escape(),
+ body('username', "UserName must not be empty").isEmail().withMessage('Invalid email'),
+ body('password', "Password must not be empty").isLength({min : 8}).withMessage('Password length must be at least 8 charachters'),
+ //Sanitize fields
+ sanitizeBody('username').trim().escape(),
+ sanitizeBody('password').trim().escape(),
  (req, res, next) =>{
     console.log(req.body);
     var errors = validationResult(req);
