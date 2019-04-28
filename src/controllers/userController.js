@@ -216,7 +216,36 @@ exports.findbyemail = [
                 }
                 else
                 {
-                    res.status(201).json(wrapUser(obj.data));
+                    res.status(201).json(obj.data);
+                }
+            });
+        };
+    }
+];
+
+exports.getuserinfo = [
+    (req, res, next) =>{
+        var errors = validationResult(req);
+        if (!errors.isEmpty())
+        {  
+            //There are errors. send error result
+            res.status(400).json({"success" : false, "error" : errors});
+            return;
+        }
+        else
+        {
+            broker.sendRPCMessage({body : req.body}, 'getadminuserinfo').then((result)=>{
+                var obj = JSON.parse(result.toString('utf8'));
+                if (!obj.success)
+                {
+                    if (obj.error)
+                    {
+                        return res.status(500).json(obj);
+                    }
+                }
+                else
+                {
+                    res.status(201).json(obj.data);
                 }
             });
         };

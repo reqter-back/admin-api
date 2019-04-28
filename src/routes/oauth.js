@@ -8,4 +8,5 @@ router.put("/changeavatar", auth.verifyToken, ctrl.changeavatar);
 router.put("/updateprofile", auth.verifyToken, ctrl.updateprofile);
 router.delete("/delete", auth.verifyToken, ctrl.deleteAccount);
 router.get("/findbyemail", auth.verifyToken, ctrl.findbyemail);
+router.get("/info", auth.verifyToken, ctrl.getuserinfo);
 module.exports = router;

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var auth = require('../controllers/auth');
-var controller = require('../controllers/contentTypeController');
+var controller = require('../controllers/categoryController');
 
 router.get("/getall", auth.verifyToken, controller.getAll);
 
