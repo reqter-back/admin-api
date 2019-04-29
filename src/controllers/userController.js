@@ -80,7 +80,8 @@ exports.register = [
                 {
                     if (obj.error.code == 11000)
                     {
-                        obj.error = "User : " + req.body.username + " already exists";
+                        console.log("User : " + req.body.username + " already exists " + JSON.stringify(obj.error));
+                        obj.error = "User : " + req.body.username + " already exists ";
                     }
                     
                     return res.status(500).json(obj);
