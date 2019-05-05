@@ -6,7 +6,7 @@ const broker = require('./serviceBroker');
 
 
 exports.getAll = function(req, res, next) {
-    broker.sendRPCMessage({spaceId : req.spaceId, userId : req.userId, body : req.body}, 'getcontenttypes').then((result)=>{
+    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId, body : req.body}, 'getcontenttypes').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
@@ -24,7 +24,7 @@ exports.getAll = function(req, res, next) {
     });
   }
   exports.add = function(req, res, next) {
-    broker.sendRPCMessage({spaceId : req.spaceId, userId : req.userId, body : req.body}, 'addcontenttype').then((result)=>{
+    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId, body : req.body}, 'addcontenttype').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
@@ -43,7 +43,7 @@ exports.getAll = function(req, res, next) {
 }
 
 exports.update = function(req, res, next) {
-    broker.sendRPCMessage({spaceId : req.spaceId, userId : req.userId, body : req.body}, 'updatecontenttype').then((result)=>{
+    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId, body : req.body}, 'updatecontenttype').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
@@ -62,7 +62,7 @@ exports.update = function(req, res, next) {
 }
 
 exports.remove = function(req, res, next) {
-    broker.sendRPCMessage({spaceId : req.spaceId, userId : req.userId, body : req.body}, 'removecontenttype').then((result)=>{
+    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId, body : req.body}, 'removecontenttype').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
