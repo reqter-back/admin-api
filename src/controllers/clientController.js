@@ -24,6 +24,25 @@ exports.getclients = function(req, res, next) {
     });
   }
 
+  exports.getclientsbyspaceid = function(req, res, next) {
+    console.log(req.userId)
+    broker.sendRPCMessage({spaceId : req.spaceId}, 'getspaceapps').then((result)=>{
+        var obj = JSON.parse(result.toString('utf8'));
+        if (!obj.success)
+        {
+            if (obj.error)
+                return res.status(500).json(obj);
+            else
+            {
+                res.status(404).json(obj);
+            }
+        }
+        else
+        {
+            res.status(200).json(obj.data);
+        }
+    });
+  }
   exports.getbyid = function(req, res, next) {
     console.log(req.userId)
     broker.sendRPCMessage({appid : req.query.id}, 'getuserappbyid').then((result)=>{
