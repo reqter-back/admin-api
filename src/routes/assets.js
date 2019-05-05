@@ -15,5 +15,6 @@ router.put("/unpublish", auth.verifyToken, controller.unPublish);
 router.put("/archive", auth.verifyToken, controller.archive);
 router.put("/unarchive", auth.verifyToken, controller.unArchive);
 router.get("/filter", auth.verifyToken, controller.filter);
+router.get("/getbyid", auth.verifyToken, controller.getbyid);
 
 module.exports = router;
