@@ -6,7 +6,8 @@ function verifyToken(req, res, next) {
     if (token == null || !token)
     {
         token = req.headers['authorization'];
-        token = token.replace("Bearer ", "");
+        if (token)
+          token = token.replace("Bearer ", "");
     }
     if (!token || token == null)
       return res.status(403).send({ auth: false, message: 'No token provided.' });

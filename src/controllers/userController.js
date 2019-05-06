@@ -235,7 +235,7 @@ exports.getuserinfo = [
         }
         else
         {
-            broker.sendRPCMessage({body : req.body}, 'getadminuserinfo').then((result)=>{
+            broker.sendRPCMessage({body : {id : req.userId}}, 'getadminuserinfo').then((result)=>{
                 var obj = JSON.parse(result.toString('utf8'));
                 if (!obj.success)
                 {

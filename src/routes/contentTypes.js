@@ -4,6 +4,7 @@ var auth = require('../controllers/auth');
 var controller = require('../controllers/contentTypeController');
 
 router.get("/getall", auth.verifyToken, controller.getAll);
+router.get("/getbyid", auth.verifyToken, controller.findById);
 
 router.post("/add", auth.verifyToken, controller.add);
 
