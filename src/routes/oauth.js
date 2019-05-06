@@ -12,4 +12,5 @@ router.get("/info", auth.verifyToken, ctrl.getuserinfo);
 router.put("/forgotpassword", ctrl.forgotpassword);
 router.put("/changepassword", auth.verifyToken, ctrl.changepassword);
 router.put("/resetpassword", auth.verifyToken, ctrl.resetpassword);
+router.put("/confirmemail", auth.verifyToken, ctrl.confirmemail);
 module.exports = router;
