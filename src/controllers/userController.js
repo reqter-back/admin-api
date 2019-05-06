@@ -246,7 +246,7 @@ exports.getuserinfo = [
                 }
                 else
                 {
-                    res.status(201).json(obj.data);
+                    res.status(200).json(obj.data);
                 }
             });
         };
