@@ -138,8 +138,7 @@ exports.updateprofile = [
         }
         else
         {
-            console.log('add system user started.')
-            broker.sendRPCMessage({body : req.body}, 'adminupdateprofile').then((result)=>{
+            broker.sendRPCMessage({spaceId : req.body.spaceId, userId : req.userId, body : req.body}, 'adminupdateprofile').then((result)=>{
                 var obj = JSON.parse(result.toString('utf8'));
                 if (!obj.success)
                 {
@@ -150,7 +149,7 @@ exports.updateprofile = [
                 }
                 else
                 {
-                    res.status(201).json(wrapUser(obj.data));
+                    res.status(200).json(obj.data);
                 }
             });
         };
@@ -181,7 +180,7 @@ exports.deleteAccount = [
                 }
                 else
                 {
-                    res.status(201).json(wrapUser(obj.data));
+                    res.status(200).json(wrapUser(obj.data));
                 }
             });
         };
@@ -217,7 +216,7 @@ exports.findbyemail = [
                 }
                 else
                 {
-                    res.status(201).json(obj.data);
+                    res.status(200).json(obj.data);
                 }
             });
         };
@@ -276,7 +275,7 @@ exports.forgotpassword = [
                 else
                 {
                     //Send mail here
-                    res.status(201).json(obj.data);
+                    res.status(200).json(obj.data);
                 }
             });
         };
@@ -298,7 +297,7 @@ exports.confirmemail = [
             else
             {
                 //Send mail here
-                res.status(201).json(obj.data);
+                res.status(200).json(obj.data);
             }
         });
     }
@@ -316,7 +315,7 @@ exports.resetpassword = [
         }
         else
         {
-            broker.sendRPCMessage({body : req.body}, 'adminresetpassword').then((result)=>{
+            broker.sendRPCMessage({body : {id : req.userId, newpassword : req.body.newpassword}}, 'adminresetpassword').then((result)=>{
                 var obj = JSON.parse(result.toString('utf8'));
                 if (!obj.success)
                 {
@@ -328,7 +327,7 @@ exports.resetpassword = [
                 else
                 {
                     //Send mail here
-                    res.status(201).json(obj.data);
+                    res.status(200).json({message : "Your password changed successfully!"});
                 }
             });
         };
@@ -346,6 +345,7 @@ exports.changepassword = [
         }
         else
         {
+            req.body.id = req.userId;
             broker.sendRPCMessage({body : req.body}, 'adminchangepassword').then((result)=>{
                 var obj = JSON.parse(result.toString('utf8'));
                 if (!obj.success)
@@ -358,7 +358,7 @@ exports.changepassword = [
                 else
                 {
                     //Send mail here
-                    res.status(201).json(obj.data);
+                    res.status(200).json({message : "Your password changed successfully!"});
                 }
             });
         };
