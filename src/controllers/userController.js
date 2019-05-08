@@ -107,7 +107,7 @@ exports.changeavatar = [
         }
         else
         {
-            console.log('add system user started.')
+            req.body.id = req.userId;
             broker.sendRPCMessage({body : req.body}, 'adminchangeavatar').then((result)=>{
                 var obj = JSON.parse(result.toString('utf8'));
                 if (!obj.success)
@@ -119,7 +119,7 @@ exports.changeavatar = [
                 }
                 else
                 {
-                    res.status(201).json(wrapUser(obj.data));
+                    res.status(200).json(obj.data);
                 }
             });
         };
@@ -263,6 +263,7 @@ exports.forgotpassword = [
         }
         else
         {
+            req.body.id = req.userId;
             broker.sendRPCMessage({body : req.body}, 'admingetforgotpasswordtoken').then((result)=>{
                 var obj = JSON.parse(result.toString('utf8'));
                 if (!obj.success)

@@ -26,7 +26,7 @@ exports.getclients = function(req, res, next) {
 
   exports.getclientsbyspaceid = function(req, res, next) {
     console.log(req.userId)
-    broker.sendRPCMessage({spaceId : req.spaceId}, 'getspaceapps').then((result)=>{
+    broker.sendRPCMessage({spaceId : req.spaceid}, 'getspaceapps').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {

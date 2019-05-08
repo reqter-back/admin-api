@@ -6,7 +6,7 @@ const broker = require('./serviceBroker');
 
 
 exports.getAll = function(req, res, next) {
-    broker.sendRPCMessage({spaceId : req.spaceId, userId : req.userId,  body : req.body}, 'getcontents').then((result)=>{
+    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId,  body : req.body}, 'getcontents').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
@@ -25,7 +25,7 @@ exports.getAll = function(req, res, next) {
   }
 
 exports.getById = function(req, res, next) {
-    broker.sendRPCMessage({spaceId : req.spaceId, userId : req.userId, body : req.body}, 'getcontentbyid').then((result)=>{
+    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId, body : req.body}, 'getcontentbyid').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
@@ -44,7 +44,7 @@ exports.getById = function(req, res, next) {
 }
 
   exports.add = function(req, res, next) {
-    broker.sendRPCMessage({spaceId : req.spaceId, userId : req.userId, data : req.body}, 'addcontent').then((result)=>{
+    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId, data : req.body}, 'addcontent').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
@@ -63,7 +63,7 @@ exports.getById = function(req, res, next) {
 }
 
 exports.update = function(req, res, next) {
-    broker.sendRPCMessage({spaceId : req.spaceId, userId : req.userId, body : req.body}, 'removecontent').then((result)=>{
+    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId, body : req.body}, 'removecontent').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
@@ -82,7 +82,7 @@ exports.update = function(req, res, next) {
 }
 
 exports.remove = function(req, res, next) {
-    broker.sendRPCMessage({spaceId : req.spaceId, userId : req.userId, body : req.body}, 'removecontent').then((result)=>{
+    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId, body : req.body}, 'removecontent').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
@@ -101,7 +101,7 @@ exports.remove = function(req, res, next) {
 }
 
 exports.publish = function(req, res, next) {
-    broker.sendRPCMessage({spaceId : req.spaceId, userId : req.userId, body : req.body}, 'publishcontent').then((result)=>{
+    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId, body : req.body}, 'publishcontent').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
@@ -120,7 +120,7 @@ exports.publish = function(req, res, next) {
 }
 
 exports.unPublish = function(req, res, next) {
-    broker.sendRPCMessage({spaceId : req.spaceId, userId : req.userId, body : req.body}, 'unpublishcontent').then((result)=>{
+    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId, body : req.body}, 'unpublishcontent').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
@@ -139,7 +139,7 @@ exports.unPublish = function(req, res, next) {
 }
 
 exports.archive = function(req, res, next) {
-    broker.sendRPCMessage({spaceId : req.spaceId, userId : req.userId, body : req.body}, 'archivecontent').then((result)=>{
+    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId, body : req.body}, 'archivecontent').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
@@ -158,7 +158,7 @@ exports.archive = function(req, res, next) {
 }
 
 exports.unArchive = function(req, res, next) {
-    broker.sendRPCMessage({spaceId : req.spaceId, userId : req.userId, body : req.body}, 'unarchivecontent').then((result)=>{
+    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId, body : req.body}, 'unarchivecontent').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
