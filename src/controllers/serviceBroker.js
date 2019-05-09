@@ -3,7 +3,8 @@ const uuidv4 = require('uuid/v4');
 var EventEmitter = require('events');
 
 const REPLY_QUEUE = 'amq.rabbitmq.reply-to';
-var rabbitHost = process.env.RABBITMQ_HOST || "amqp://gvgeetrh:6SyWQAxDCpcdg1S0Dc-Up0sUxfmBUVZU@chimpanzee.rmq.cloudamqp.com/gvgeetrh";
+//var rabbitHost = process.env.RABBITMQ_HOST || "amqp://fwhebseo:Q3Ft5NUyFNBniua53p_bV8u-w3KVfmsK @wildboar.rmq.cloudamqp.com/fwhebseo ";
+var rabbitHost = process.env.RABBITMQ_HOST || "amqp://localhost:5672";
 
 var amqpConn = null;
 function startconnect(){
@@ -37,15 +38,15 @@ function whenConnected() {
   amqpConn.createChannel( (err, ch) => {
       if (err) {
           console.error("[AMQP]", err.message);
-          return setTimeout(this.startconnect, 1000);
+          //return setTimeout(this.startconnect, 1000);
           }
           ch.on("error", function(err) {
           console.error("[AMQP] channel error", err.message);
-          return setTimeout(this.startconnect, 1000);
+          //return setTimeout(this.startconnect, 1000);
           });
           ch.on("close", function() {
           console.log("[AMQP] channel closed");
-          return setTimeout(this.startconnect, 1000);
+          //return setTimeout(this.startconnect, 1000);
           });
           // create an event emitter where rpc responses will be published by correlationId
           ch.responseEmitter = new EventEmitter();

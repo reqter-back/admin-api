@@ -44,7 +44,7 @@ exports.getById = function(req, res, next) {
 }
 
   exports.add = function(req, res, next) {
-    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId, data : req.body}, 'addcontent').then((result)=>{
+    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId, body : req.body}, 'addcontent').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
