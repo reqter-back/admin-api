@@ -25,7 +25,7 @@ exports.getAll = function(req, res, next) {
   }
 
 exports.getById = function(req, res, next) {
-    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId, body : req.body}, 'getcontentbyid').then((result)=>{
+    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId, body : {id : req.query.id}}, 'getcontentbyid').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
