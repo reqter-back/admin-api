@@ -63,7 +63,7 @@ exports.getById = function(req, res, next) {
 }
 
 exports.update = function(req, res, next) {
-    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId, body : req.body}, 'removecontent').then((result)=>{
+    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId, body : req.body}, 'updatecontent').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
