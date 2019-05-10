@@ -126,6 +126,35 @@ exports.changeavatar = [
     }
 ];
 
+exports.changenotification = [
+    (req, res, next) =>{
+        var errors = validationResult(req);
+        if (!errors.isEmpty())
+        {  
+            //There are errors. send error result
+            res.status(400).json({"success" : false, "error" : errors});
+            return;
+        }
+        else
+        {
+            req.body.id = req.userId;
+            broker.sendRPCMessage({body : req.body}, 'adminchangenotification').then((result)=>{
+                var obj = JSON.parse(result.toString('utf8'));
+                if (!obj.success)
+                {
+                    if (obj.error)
+                    {
+                        return res.status(500).json(obj);
+                    }
+                }
+                else
+                {
+                    res.status(200).json(obj.data);
+                }
+            });
+        };
+    }
+];
 
 exports.updateprofile = [
     (req, res, next) =>{

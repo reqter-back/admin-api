@@ -5,6 +5,7 @@ var auth = require('../controllers/auth');
 router.post("/token", ctrl.login);
 router.post("/register", ctrl.register);
 router.put("/changeavatar", auth.verifyToken, ctrl.changeavatar);
+router.put("/changenotification", auth.verifyToken, ctrl.changenotification);
 router.put("/updateprofile", auth.verifyToken, ctrl.updateprofile);
 router.delete("/delete", auth.verifyToken, ctrl.deleteAccount);
 router.get("/findbyemail", auth.verifyToken, ctrl.findbyemail);
