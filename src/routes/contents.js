@@ -3,6 +3,7 @@ var router = express.Router();
 var auth = require('../controllers/auth');
 var controller = require('../controllers/contentController');
 
+router.get("/filter", auth.verifyToken, controller.filter);
 router.get("/getall", auth.verifyToken, controller.getAll);
 router.get("/getbyid", auth.verifyToken, controller.getById);
 
