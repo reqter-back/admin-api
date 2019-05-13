@@ -4,29 +4,9 @@ const { body, validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 const broker = require('./serviceBroker');
 
-exports.getclients = function(req, res, next) {
-    console.log(req.userId)
-    broker.sendRPCMessage({userId : req.userId}, 'getuserapps').then((result)=>{
-        var obj = JSON.parse(result.toString('utf8'));
-        if (!obj.success)
-        {
-            if (obj.error)
-                return res.status(500).json(obj);
-            else
-            {
-                res.status(404).json(obj);
-            }
-        }
-        else
-        {
-            res.status(200).json(obj.data);
-        }
-    });
-  }
-
   exports.getclientsbyspaceid = function(req, res, next) {
     console.log(req.userId)
-    broker.sendRPCMessage({spaceId : req.spaceid}, 'getspaceapps').then((result)=>{
+    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId}, 'getapps').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
@@ -45,7 +25,7 @@ exports.getclients = function(req, res, next) {
   }
   exports.getbyid = function(req, res, next) {
     console.log(req.userId)
-    broker.sendRPCMessage({appid : req.query.id}, 'getuserappbyid').then((result)=>{
+    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId, body : {id : req.query.id}}, 'getappbyid').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
@@ -64,7 +44,7 @@ exports.getclients = function(req, res, next) {
   }
 exports.registerclient = function(req, res, next) {
     console.log(req.body);
-    broker.sendRPCMessage(req.body, 'registerapp').then((result)=>{
+    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId, body : req.body}, 'registerapp').then((result)=>{
     var obj = JSON.parse(result.toString('utf8'));
     if (!obj.success)
     {
@@ -83,7 +63,7 @@ exports.registerclient = function(req, res, next) {
 }
 
 exports.removeclient = function(req, res, next) {
-    broker.sendRPCMessage(req.body, 'removeapp').then((result)=>{
+    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId, body : req.body}, 'removeapp').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
@@ -102,7 +82,7 @@ exports.removeclient = function(req, res, next) {
 }
 
 exports.updateclient = function(req, res, next) {
-    broker.sendRPCMessage(req.body, 'updateapp').then((result)=>{
+    broker.sendRPCMessage({spaceId : req.spaceid, userId : req.userId, body : req.body}, 'updateapp').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {

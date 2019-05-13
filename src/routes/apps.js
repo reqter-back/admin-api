@@ -41,8 +41,7 @@ HTTP/1.1 500 Internal server error
  }
 
  */
-router.get("/getall", auth.verifyToken, clientController.getclients);
-router.get("/getbyspace", auth.verifyToken, clientController.getclientsbyspaceid);
+router.get("/getall", auth.verifyToken, clientController.getclientsbyspaceid);
 
 router.post("/register", clientController.registerclient);
 
