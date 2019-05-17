@@ -198,7 +198,8 @@ exports.deleteAccount = [
         else
         {
             console.log('add system user started.')
-            broker.sendRPCMessage({body : req.body}, 'admindeleteaccount').then((result)=>{
+            req.body.id = req.userId;
+            broker.sendRPCMessage({spaceId : req.body.spaceId, userId : req.userId, body : req.body}, 'admindeleteaccount').then((result)=>{
                 var obj = JSON.parse(result.toString('utf8'));
                 if (!obj.success)
                 {
@@ -206,10 +207,14 @@ exports.deleteAccount = [
                     {
                         return res.status(500).json(obj);
                     }
+                    else
+                    {
+                        return res.status(404).json(obj);
+                    }
                 }
                 else
                 {
-                    res.status(200).json(wrapUser(obj.data));
+                    res.status(200).json(obj);
                 }
             });
         };
