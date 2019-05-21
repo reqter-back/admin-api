@@ -6,6 +6,7 @@ var controller = require('../controllers/requestController');
 router.get("/filter", auth.verifyToken, controller.filter);
 router.get("/getall", auth.verifyToken, controller.getAll);
 router.get("/getbyid", auth.verifyToken, controller.getById);
+router.get("/getbylink", controller.getById);
 
 router.post("/add", auth.verifyToken, controller.add);
 
