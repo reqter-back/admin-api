@@ -44,7 +44,7 @@ exports.getById = function(req, res, next) {
 }
 
 exports.getByLink = function(req, res, next) {
-    broker.sendRPCMessage({body : {id : req.query.link}}, 'getrequestbylink').then((result)=>{
+    broker.sendRPCMessage({body : {link : req.query.link}}, 'getrequestbylink').then((result)=>{
         var obj = JSON.parse(result.toString('utf8'));
         if (!obj.success)
         {
