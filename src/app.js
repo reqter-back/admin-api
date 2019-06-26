@@ -19,9 +19,7 @@ var apps = require('./routes/apps');
 var ctypes = require('./routes/contentTypes');
 var assets = require('./routes/assets');
 var contents = require('./routes/contents');
-var categories = require('./routes/categories');
 var spaces = require('./routes/spaces');
-var requests = require('./routes/requests');
 
 // a middleware function with no mount path. This code is executed for every request to the router
 
@@ -35,7 +33,5 @@ app.use("/apps", apps);
 app.use("/ctypes", ctypes);
 app.use("/assets", assets);
 app.use("/contents", contents);
-app.use("/categories", categories);
 app.use("/spaces", spaces);
-app.use("/requests", requests);
 module.exports = app;
