@@ -1,8 +1,9 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-var auth = require('../controllers/auth');
-var controller = require('../controllers/contentController');
+var auth = require("../controllers/auth");
+var controller = require("../controllers/contentController");
 
+router.get("/query", auth.verifyToken, controller.query);
 router.get("/filter", auth.verifyToken, controller.filter);
 router.get("/getall", auth.verifyToken, controller.getAll);
 router.get("/getbyid", auth.verifyToken, controller.getById);
