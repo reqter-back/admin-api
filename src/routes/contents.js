@@ -12,6 +12,7 @@ router.get("/getbylink", controller.getByLink);
 router.post("/add", auth.verifyToken, controller.add);
 
 router.delete("/remove", auth.verifyToken, controller.remove);
+router.delete("/removemany", auth.verifyToken, controller.removeMany);
 
 router.put("/update", auth.verifyToken, controller.update);
 
