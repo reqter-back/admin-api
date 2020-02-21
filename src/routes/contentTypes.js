@@ -12,5 +12,6 @@ router.post("/add", auth.verifyToken, controller.add);
 router.delete("/remove", auth.verifyToken, controller.remove);
 
 router.put("/update", auth.verifyToken, controller.update);
+router.get("/count", auth.verifyToken, controller.count);
 
 module.exports = router;

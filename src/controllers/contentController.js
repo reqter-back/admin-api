@@ -1,13 +1,21 @@
 var jwt = require("jsonwebtoken");
 const config = require("../config");
-const { body, validationResult } = require("express-validator/check");
-const { sanitizeBody } = require("express-validator/filter");
+const {
+  body,
+  validationResult
+} = require("express-validator/check");
+const {
+  sanitizeBody
+} = require("express-validator/filter");
 const broker = require("./serviceBroker");
 
-exports.getAll = function(req, res, next) {
+exports.getAll = function (req, res, next) {
   broker
-    .sendRPCMessage(
-      { spaceId: req.spaceid, userId: req.userId, body: req.body },
+    .sendRPCMessage({
+        spaceId: req.spaceid,
+        userId: req.userId,
+        body: req.body
+      },
       "getcontents"
     )
     .then(result => {
@@ -23,10 +31,15 @@ exports.getAll = function(req, res, next) {
     });
 };
 
-exports.getById = function(req, res, next) {
+exports.getById = function (req, res, next) {
   broker
-    .sendRPCMessage(
-      { spaceId: req.spaceid, userId: req.userId, body: { id: req.query.id } },
+    .sendRPCMessage({
+        spaceId: req.spaceid,
+        userId: req.userId,
+        body: {
+          id: req.query.id
+        }
+      },
       "getcontentbyid"
     )
     .then(result => {
@@ -42,13 +55,14 @@ exports.getById = function(req, res, next) {
     });
 };
 
-exports.getByLink = function(req, res, next) {
+exports.getByLink = function (req, res, next) {
   broker
-    .sendRPCMessage(
-      {
+    .sendRPCMessage({
         spaceId: req.spaceid,
         userId: req.userId,
-        body: { link: req.query.link }
+        body: {
+          link: req.query.link
+        }
       },
       "getcontentbylink"
     )
@@ -64,10 +78,13 @@ exports.getByLink = function(req, res, next) {
       }
     });
 };
-exports.add = function(req, res, next) {
+exports.add = function (req, res, next) {
   broker
-    .sendRPCMessage(
-      { spaceId: req.spaceid, userId: req.userId, body: req.body },
+    .sendRPCMessage({
+        spaceId: req.spaceid,
+        userId: req.userId,
+        body: req.body
+      },
       "addcontent"
     )
     .then(result => {
@@ -83,10 +100,13 @@ exports.add = function(req, res, next) {
     });
 };
 
-exports.update = function(req, res, next) {
+exports.update = function (req, res, next) {
   broker
-    .sendRPCMessage(
-      { spaceId: req.spaceid, userId: req.userId, body: req.body },
+    .sendRPCMessage({
+        spaceId: req.spaceid,
+        userId: req.userId,
+        body: req.body
+      },
       "updatecontent"
     )
     .then(result => {
@@ -102,10 +122,13 @@ exports.update = function(req, res, next) {
     });
 };
 
-exports.remove = function(req, res, next) {
+exports.remove = function (req, res, next) {
   broker
-    .sendRPCMessage(
-      { spaceId: req.spaceid, userId: req.userId, body: req.body },
+    .sendRPCMessage({
+        spaceId: req.spaceid,
+        userId: req.userId,
+        body: req.body
+      },
       "removecontent"
     )
     .then(result => {
@@ -121,10 +144,13 @@ exports.remove = function(req, res, next) {
     });
 };
 
-exports.removeMany = function(req, res, next) {
+exports.removeMany = function (req, res, next) {
   broker
-    .sendRPCMessage(
-      { spaceId: req.spaceid, userId: req.userId, body: req.body },
+    .sendRPCMessage({
+        spaceId: req.spaceid,
+        userId: req.userId,
+        body: req.body
+      },
       "removecontentbyfilter"
     )
     .then(result => {
@@ -139,10 +165,13 @@ exports.removeMany = function(req, res, next) {
       }
     });
 };
-exports.publish = function(req, res, next) {
+exports.publish = function (req, res, next) {
   broker
-    .sendRPCMessage(
-      { spaceId: req.spaceid, userId: req.userId, body: req.body },
+    .sendRPCMessage({
+        spaceId: req.spaceid,
+        userId: req.userId,
+        body: req.body
+      },
       "publishcontent"
     )
     .then(result => {
@@ -158,10 +187,13 @@ exports.publish = function(req, res, next) {
     });
 };
 
-exports.unPublish = function(req, res, next) {
+exports.unPublish = function (req, res, next) {
   broker
-    .sendRPCMessage(
-      { spaceId: req.spaceid, userId: req.userId, body: req.body },
+    .sendRPCMessage({
+        spaceId: req.spaceid,
+        userId: req.userId,
+        body: req.body
+      },
       "unpublishcontent"
     )
     .then(result => {
@@ -177,10 +209,13 @@ exports.unPublish = function(req, res, next) {
     });
 };
 
-exports.archive = function(req, res, next) {
+exports.archive = function (req, res, next) {
   broker
-    .sendRPCMessage(
-      { spaceId: req.spaceid, userId: req.userId, body: req.body },
+    .sendRPCMessage({
+        spaceId: req.spaceid,
+        userId: req.userId,
+        body: req.body
+      },
       "archivecontent"
     )
     .then(result => {
@@ -196,10 +231,13 @@ exports.archive = function(req, res, next) {
     });
 };
 
-exports.unArchive = function(req, res, next) {
+exports.unArchive = function (req, res, next) {
   broker
-    .sendRPCMessage(
-      { spaceId: req.spaceid, userId: req.userId, body: req.body },
+    .sendRPCMessage({
+        spaceId: req.spaceid,
+        userId: req.userId,
+        body: req.body
+      },
       "unarchivecontent"
     )
     .then(result => {
@@ -215,11 +253,10 @@ exports.unArchive = function(req, res, next) {
     });
 };
 
-exports.filter = function(req, res, next) {
+exports.filter = function (req, res, next) {
   console.log(req);
   broker
-    .sendRPCMessage(
-      {
+    .sendRPCMessage({
         spaceId: req.spaceid,
         userId: req.userId,
         body: {
@@ -243,12 +280,59 @@ exports.filter = function(req, res, next) {
     });
 };
 
-exports.query = function(req, res, next) {
+exports.query = function (req, res, next) {
   console.log(req.query);
   broker
-    .sendRPCMessage(
-      { spaceId: req.spaceid, userId: req.userId, body: req.query },
+    .sendRPCMessage({
+        spaceId: req.spaceid,
+        userId: req.userId,
+        body: req.query
+      },
       "querycontents"
+    )
+    .then(result => {
+      var obj = JSON.parse(result.toString("utf8"));
+      if (!obj.success) {
+        if (obj.error) return res.status(500).json(obj);
+        else {
+          res.status(404).json(obj);
+        }
+      } else {
+        res.status(200).json(obj.data);
+      }
+    });
+};
+
+exports.count = function (req, res, next) {
+  broker
+    .sendRPCMessage({
+        spaceId: req.spaceid,
+        userId: req.userId,
+        body: req.query
+      },
+      "getcontentscount"
+    )
+    .then(result => {
+      var obj = JSON.parse(result.toString("utf8"));
+      if (!obj.success) {
+        if (obj.error) return res.status(500).json(obj);
+        else {
+          res.status(404).json(obj);
+        }
+      } else {
+        res.status(200).json(obj.data);
+      }
+    });
+};
+
+exports.contentsbystatus = function (req, res, next) {
+  broker
+    .sendRPCMessage({
+        spaceId: req.spaceid,
+        userId: req.userId,
+        body: req.query
+      },
+      "contentsbystatus"
     )
     .then(result => {
       var obj = JSON.parse(result.toString("utf8"));

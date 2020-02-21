@@ -9,5 +9,6 @@ router.put("/setlocales", auth.verifyToken, controller.setlocales);
 router.put("/setroles", auth.verifyToken, controller.setroles);
 router.put("/setwebhooks", auth.verifyToken, controller.setwebhooks);
 router.get("/getwebhooks", auth.verifyToken, controller.getwebhooks);
+router.get("/limits", auth.verifyToken, controller.limits);
 
 module.exports = router;

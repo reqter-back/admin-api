@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var helmet = require('helmet');
 var compression = require('compression');
+// var db = require('./db/init-db')
 var router = express.Router()
 
 
@@ -25,7 +26,9 @@ var spaces = require('./routes/spaces');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(cookieParser());
 
 app.use("/auth", oauth);
