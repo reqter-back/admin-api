@@ -6,10 +6,14 @@ var bodyParser = require('body-parser');
 var helmet = require('helmet');
 var compression = require('compression');
 // var db = require('./db/init-db')
-var router = express.Router()
+var router = express.Router();
+let apiLogger = require("./middlewares/apiLogger");
 
 
 var app = express();
+
+// Overwrite res.send
+app.use(apiLogger);
 
 app.use(compression()); //Compress all routes
 app.use(helmet());
